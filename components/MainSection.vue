@@ -4,7 +4,7 @@
             <h2 class="text-xl font-bold text-gray-800 dark:text-gray-100`">{{ props.title }}</h2>
         </div>
         <div v-if="props.loading" class="flex items-center justify-center p-4 border-b" :class="twitterBorderColor">
-            <UI-Spinner/>
+        <UI-Spinner/>
         </div>
         <div v-else>
             <slot></slot>
@@ -25,5 +25,6 @@
     })
 
     const { twitterBorderColor } = useTailwindConfig()
+    //TODO: test
 
 </script>

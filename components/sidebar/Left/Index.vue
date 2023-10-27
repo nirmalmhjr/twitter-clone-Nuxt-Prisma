@@ -74,11 +74,56 @@
                     More
                 </template>
             </Sidebar-Left-Tab>
-        </div>
-    </div>
 
+            <div class="hidden xl:block" @click="emits('onTweet')">
+                <UI-Button size="lg" liquid >
+                    <span class="font-bold">Tweet</span>
+                </UI-Button>
+            </div>
+            <div class="block xl:hidden" @click="emits('onTweet')">
+                <UI-Button>
+                    <div class="w-6 h-6 font-bold ">
+                        <Icon name="material-symbols:edit-outline" size="30" />
+                    </div>
+                </UI-Button>
+            </div>
+        </div>
+        
+        <div
+          :class="defaultTransition"
+          class="flex flex-row items-center justify-center px-2 py-2 mx-auto mt-auto mb-5 rounded-full cursor-pointer w-14 xl:w-full hover:bg-gray-100 dark:hover:bg-dim-800"
+          @click="emits('onLogout')"
+        >
+            <div class="flex flex-row">
+                <img :src="props.user.profileImage" class="w-10 h-10 rounded-full">
+                <div class="flex-col hidden ml-2 xl:block">
+                    <h1 class="flex-col hidden ml-2 xl:block">
+                        {{ props.user.name }}
+                    </h1>
+                    <p class="text-sm text-gray-400">
+                        {{ props.user.handle }}
+                    </p>
+                </div>
+            </div>
+            <div class="hidden ml-auto xl:block">
+                <div class="w-6 h-6">
+                     <Icon name="heroicons:chevron-down" size="25" />
+                </div>
+    
+            </div>
+        </div>
+
+    </div>
 </template>
 <script setup>
     const {defaultTransition} = useTailwindConfig()
+
+    const emits = defineEmits(['onTweet','onLogout'])
+    const props = defineProps({
+        user: {
+            type: Object,
+            required: true
+        }
+    })
 
 </script>
